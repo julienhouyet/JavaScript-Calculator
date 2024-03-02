@@ -109,6 +109,9 @@ export class Calculator {
 			case '+':
 				computation = prev + current;
 				break;
+			case '-':
+				computation = prev - current;
+				break;
 			default:
 				return;
 		}
@@ -130,6 +133,10 @@ export class Calculator {
 		this.displayElement.textContent = this.currentValue;
 
 		this.updateDisplayStyle();
+
+		console.log('previous: ' + this.previousValue + '\n');
+		console.log('current: ' + this.currentValue + '\n');
+		console.log('operation: ' + this.operation);
 	}
 
 	/**
