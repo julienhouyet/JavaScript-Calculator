@@ -64,4 +64,4 @@ $ npm run preview
 
 ## :label: Versioning
 
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/yourusername/javascript-calculator/tags).
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julienhouyet/javascript-calculator/tags).
