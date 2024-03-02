@@ -2,17 +2,21 @@
   "name": "javascript-calculator",
   "version": "1.0.0",
   "description": "The aim of this project is to develop a calculator with JavaScript Vanilla. The calculator must be able to perform addition, subtraction, multiplication, division, powers, percentages, logical operators and logarithms.",
-  "type": "module", 
+  "type": "module",
   "scripts": {
-	"start": "vite",
-	"build": "vite build",
-	"preview": "vite preview",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Julien Houyet",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
     "vite": "^5.1.4"
   }
 }
