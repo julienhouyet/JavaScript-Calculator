@@ -1,4 +1,4 @@
-import { updateDisplay, appendNumberToDisplay, appendDecimal, resetDisplay } from './ui.js';
+import { Calculator } from './calculator.js';
 
 // Initialize the calculator when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,21 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
 	const numberButtons = document.querySelectorAll('.number');
 	const decimalButton = document.querySelector('.decimal');
 	const clearButton = document.querySelector('.clear');
+	const equalsButton = document.querySelector('.equals');
+	const operationButtons = document.querySelectorAll('[data-operation]');
+	const calculator = new Calculator(displayElement);
 
 	// Attach an event handler to each number button
 	numberButtons.forEach(button => {
 		button.addEventListener('click', () => {
-			appendNumberToDisplay(button.textContent, displayElement);
+			calculator.appendNumber(button.textContent);
 		});
 	});
 
 	// Attach event handler to the decimal button
 	decimalButton.addEventListener('click', () => {
-		appendDecimal(displayElement);
+		calculator.appendDecimal();
 	});
 
 	// Attach event handler to the AC button
-	clearButton.addEventListener('click', () => {
-		resetDisplay(displayElement);
+	clearButton.addEventListener('click', button => {
+		calculator.clear();
+	});
+
+	// Attach an event handler to each operation button
+	operationButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			calculator.chooseOperation(button.getAttribute('data-operation'));
+		});
+	});
+
+	// Attach event handler to the equal button
+	equalsButton.addEventListener('click', button => {
+		calculator.compute();
+		calculator.updateDisplay();
 	});
 });
