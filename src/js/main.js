@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const numberButtons = document.querySelectorAll('.number');
 	const decimalButton = document.querySelector('.decimal');
 	const clearButton = document.querySelector('.clear');
+	const equalsButton = document.querySelector('.equals');
+	const operationButtons = document.querySelectorAll('[data-operation]');
 	const calculator = new Calculator(displayElement);
 
 	// Attach an event handler to each number button
@@ -24,5 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Attach event handler to the AC button
 	clearButton.addEventListener('click', button => {
 		calculator.clear();
+	});
+
+	// Attach an event handler to each operation button
+	operationButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			calculator.chooseOperation(button.getAttribute('data-operation'));
+		});
+	});
+
+	// Attach event handler to the equal button
+	equalsButton.addEventListener('click', button => {
+		calculator.compute();
+		calculator.updateDisplay();
 	});
 });

@@ -23,7 +23,7 @@ export class Calculator {
 	clear() {
 		this.currentValue = '0';
 		this.previousValue = '';
-		this.currentOperand = '';
+		this.operation = '';
 		this.updateDisplay();
 	}
 
@@ -38,27 +38,20 @@ export class Calculator {
 	 * The display is updated after appending the digit to reflect the current state.
 	 */
 	appendNumber(number) {
-		// Calculate length without counting the decimal point
 		let lengthWithoutDecimal = this.currentValue.replace('.', '').length;
 
-		// Prevent digits from being added if the limit without the decimal point is reached
 		if (lengthWithoutDecimal >= 19) return;
 
-		// Handle multiple leading zeros or replace '0' with a new digit
 		if (this.currentValue === '0') {
 			if (number === '0') {
-				// Do nothing if the digit to be added is '0' when currentValue is already '0'.
 				return;
 			} else {
-				// Replace '0' with the new number if different from '0'.
 				this.currentValue = number;
 			}
 		} else {
-			// Add the new number to the end of currentValue
 			this.currentValue += number;
 		}
 
-		// Update display
 		this.updateDisplay();
 	}
 
@@ -70,13 +63,59 @@ export class Calculator {
 	 * it starts with '0.' to represent a fractional number properly.
 	 */
 	appendDecimal() {
-		// Does nothing if there is already a decimal or 19 digits
 		if (this.currentValue.includes('.') || this.currentValue.length >= 19)
 			return;
-		// Adds a decimal
+
 		this.currentValue = this.currentValue ? `${this.currentValue}.` : '0.';
 
-		// Update display
+		this.updateDisplay();
+	}
+
+	/**
+	 * Sets the current operation and prepares for the next value.
+	 * 
+	 * This function is called when the user selects an operation (e.g., addition).
+	 * If there's already a current value, and a new operation is chosen, it performs
+	 * the previously set operation by calling `compute`. It then stores the current
+	 * operation and sets the previous value to the current value, preparing for the
+	 * next value to be entered.
+	 * 
+	 * @param {string} operation - The operation to perform (e.g., '+').
+	 */
+	chooseOperation(operation) {
+		if (this.currentValue === '') return;
+		if (this.previousValue !== '') {
+			this.compute();
+		}
+		this.operation = operation;
+		this.previousValue = this.currentValue;
+		this.currentValue = '';
+	}
+
+	/**
+	 * Performs the computation based on the current and previous values and the selected operation.
+	 * 
+	 * This function calculates the result of the operation selected by the user (e.g., addition),
+	 * using the previous and current values. It supports various operations and defaults to doing
+	 * nothing if the operation is not recognized. After computing, it updates the current value with
+	 * the result, clears the operation, and updates the display to show the result.
+	 */
+	compute() {
+		let computation;
+		const prev = parseFloat(this.previousValue);
+		const current = parseFloat(this.currentValue);
+		if (isNaN(prev) || isNaN(current)) return;
+		switch (this.operation) {
+			case '+':
+				computation = prev + current;
+				break;
+			default:
+				return;
+		}
+		this.currentValue = computation.toString();
+		this.operation = '';
+		this.previousValue = '';
+
 		this.updateDisplay();
 	}
 
@@ -88,13 +127,20 @@ export class Calculator {
 	 * readability and a consistent user experience.
 	 */
 	updateDisplay() {
-		// Replaces the display element value with the current value
 		this.displayElement.textContent = this.currentValue;
 
-		// Update display style based on the number of digits
 		this.updateDisplayStyle();
 	}
 
+	/**
+	 * Adjusts the display style based on the current number of characters.
+	 * 
+	 * This method dynamically adjusts the font size of the display element based on the current
+	 * length of its content. It ensures that longer numbers are shown with a smaller font size to
+	 * fit within the display area, maintaining readability and a visually appealing interface.
+	 * The size adjustments are made through the application of CSS classes that correspond to
+	 * different font sizes.
+	 */
 	updateDisplayStyle() {
 		const currentLength = this.displayElement.textContent.length;
 		if (currentLength > 17) {
