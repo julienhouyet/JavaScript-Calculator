@@ -133,10 +133,6 @@ export class Calculator {
 		this.displayElement.textContent = this.currentValue;
 
 		this.updateDisplayStyle();
-
-		console.log('previous: ' + this.previousValue + '\n');
-		console.log('current: ' + this.currentValue + '\n');
-		console.log('operation: ' + this.operation);
 	}
 
 	/**
