@@ -38,27 +38,20 @@ export class Calculator {
 	 * The display is updated after appending the digit to reflect the current state.
 	 */
 	appendNumber(number) {
-		// Calculate length without counting the decimal point
 		let lengthWithoutDecimal = this.currentValue.replace('.', '').length;
 
-		// Prevent digits from being added if the limit without the decimal point is reached
 		if (lengthWithoutDecimal >= 19) return;
 
-		// Handle multiple leading zeros or replace '0' with a new digit
 		if (this.currentValue === '0') {
 			if (number === '0') {
-				// Do nothing if the digit to be added is '0' when currentValue is already '0'.
 				return;
 			} else {
-				// Replace '0' with the new number if different from '0'.
 				this.currentValue = number;
 			}
 		} else {
-			// Add the new number to the end of currentValue
 			this.currentValue += number;
 		}
 
-		// Update display
 		this.updateDisplay();
 	}
 
@@ -70,13 +63,11 @@ export class Calculator {
 	 * it starts with '0.' to represent a fractional number properly.
 	 */
 	appendDecimal() {
-		// Does nothing if there is already a decimal or 19 digits
 		if (this.currentValue.includes('.') || this.currentValue.length >= 19)
 			return;
-		// Adds a decimal
+
 		this.currentValue = this.currentValue ? `${this.currentValue}.` : '0.';
 
-		// Update display
 		this.updateDisplay();
 	}
 
@@ -88,10 +79,8 @@ export class Calculator {
 	 * readability and a consistent user experience.
 	 */
 	updateDisplay() {
-		// Replaces the display element value with the current value
 		this.displayElement.textContent = this.currentValue;
 
-		// Update display style based on the number of digits
 		this.updateDisplayStyle();
 	}
 
