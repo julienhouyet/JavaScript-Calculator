@@ -23,7 +23,7 @@ export class Calculator {
 	clear() {
 		this.currentValue = '0';
 		this.previousValue = '';
-		this.currentOperand = '';
+		this.operation = '';
 		this.updateDisplay();
 	}
 
@@ -72,6 +72,54 @@ export class Calculator {
 	}
 
 	/**
+	 * Sets the current operation and prepares for the next value.
+	 * 
+	 * This function is called when the user selects an operation (e.g., addition).
+	 * If there's already a current value, and a new operation is chosen, it performs
+	 * the previously set operation by calling `compute`. It then stores the current
+	 * operation and sets the previous value to the current value, preparing for the
+	 * next value to be entered.
+	 * 
+	 * @param {string} operation - The operation to perform (e.g., '+').
+	 */
+	chooseOperation(operation) {
+		if (this.currentValue === '') return;
+		if (this.previousValue !== '') {
+			this.compute();
+		}
+		this.operation = operation;
+		this.previousValue = this.currentValue;
+		this.currentValue = '';
+	}
+
+	/**
+	 * Performs the computation based on the current and previous values and the selected operation.
+	 * 
+	 * This function calculates the result of the operation selected by the user (e.g., addition),
+	 * using the previous and current values. It supports various operations and defaults to doing
+	 * nothing if the operation is not recognized. After computing, it updates the current value with
+	 * the result, clears the operation, and updates the display to show the result.
+	 */
+	compute() {
+		let computation;
+		const prev = parseFloat(this.previousValue);
+		const current = parseFloat(this.currentValue);
+		if (isNaN(prev) || isNaN(current)) return;
+		switch (this.operation) {
+			case '+':
+				computation = prev + current;
+				break;
+			default:
+				return;
+		}
+		this.currentValue = computation.toString();
+		this.operation = '';
+		this.previousValue = '';
+
+		this.updateDisplay();
+	}
+
+	/**
 	 * Update the calculator display.
 	 * 
 	 * This function replaces the display element's content with the current value
@@ -84,6 +132,15 @@ export class Calculator {
 		this.updateDisplayStyle();
 	}
 
+	/**
+	 * Adjusts the display style based on the current number of characters.
+	 * 
+	 * This method dynamically adjusts the font size of the display element based on the current
+	 * length of its content. It ensures that longer numbers are shown with a smaller font size to
+	 * fit within the display area, maintaining readability and a visually appealing interface.
+	 * The size adjustments are made through the application of CSS classes that correspond to
+	 * different font sizes.
+	 */
 	updateDisplayStyle() {
 		const currentLength = this.displayElement.textContent.length;
 		if (currentLength > 17) {
