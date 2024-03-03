@@ -120,6 +120,26 @@ export class Calculator {
 	}
 
 	/**
+	 * Inverses the sign of the current value displayed on the calculator.
+	 * 
+	 * This function checks if the current value is valid and, if so, multiplies it by -1
+	 * to inverse its sign. The updated value is then converted back to a string to be
+	 * displayed. This allows the user to easily switch between positive and negative
+	 * numbers without having to manually enter a negative sign or perform subtraction.
+	 */
+	applyReverseSign() {
+		if (!this.currentValue) return;
+
+		const currentValueNum = parseFloat(this.currentValue);
+
+		if (isNaN(currentValueNum)) return;
+
+		this.currentValue = (currentValueNum * -1).toString();
+
+		this.updateDisplay();
+	}
+
+	/**
 	 * Performs the computation based on the current and previous values and the selected operation.
 	 * 
 	 * This function calculates the result of the operation selected by the user (e.g., addition),

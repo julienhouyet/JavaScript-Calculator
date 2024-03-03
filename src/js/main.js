@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const clearButton = document.querySelector('.clear');
 	const equalsButton = document.querySelector('.equals');
 	const percentButton = document.querySelector('.percent');
+	const toggleSignButton = document.querySelector('.toggle-sign');
 	const operationButtons = document.querySelectorAll('[data-operation]');
 
 	// Creates a new instance of the Calculator class
@@ -42,6 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Attach event handler to the percent button
 	percentButton.addEventListener('click', () => {
 		calculator.applyPercentage();
+	});
+
+	// Attach event handler to the toggle sign button
+	toggleSignButton.addEventListener('click', () => {
+		calculator.applyReverseSign();
 	});
 
 	// Attach event handler to the equal button
