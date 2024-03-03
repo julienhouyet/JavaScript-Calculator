@@ -141,13 +141,25 @@ export class Calculator {
 	}
 
 	/**
-	 * Update the calculator display.
+	 * Update the calculator display with the current value.
 	 * 
-	 * This function replaces the display element's content with the current value
-	 * and adjusts the display style based on the number of digits to ensure
-	 * readability and a consistent user experience.
+	 * This function displays the current value in the calculator's display element. 
+	 * For readability and to ensure a consistent user experience, it adjusts the display 
+	 * style based on the number of digits. When the current value is too large, too small, 
+	 * or exceeds the display capacity (more than 19 digits), it formats the number using 
+	 * scientific notation to keep the display concise and readable.
+	 * 
 	 */
 	updateDisplay() {
+		let displayValue = this.currentValue;
+
+		const floatValue = parseFloat(displayValue);
+
+		if (!isNaN(floatValue)) {
+			if (displayValue.length > 19 || floatValue >= 1e19 || floatValue <= -1e19) {
+				displayValue = floatValue.toPrecision(15).toString();
+			}
+		}
 		this.displayElement.textContent = this.currentValue;
 
 		this.updateDisplayStyle();
