@@ -7,11 +7,11 @@
 
 ## Introduction
 
-The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main goal is to build a tool that serves no practical purpose, such as performing basic arithmetic operations like addition, subtraction, multiplication and division. This project is rooted in a desire to deepen my understanding of JavaScript and its application in the development of user-centered interfaces.
+The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main goal is to build a tool that serves practical purpose, such as performing basic arithmetic operations like addition, subtraction, multiplication and division. This project is rooted in a desire to deepen my understanding of JavaScript and its application in the development of user-centered interfaces.
 
 ## :sparkles: Current Features
 
-Our calculator offers a comprehensive suite of functionalities designed for both simplicity and efficiency. Users can currently:
+The calculator offers a comprehensive suite of functionalities designed for both simplicity and efficiency. Users can currently:
 
 - **Perform Basic Arithmetic Operations**: Easily execute fundamental mathematical operations such as addition, subtraction, multiplication, and division.
 - **Sign Inversion**: Quickly invert the sign of any given number, allowing for seamless transitions between positive and negative values.
