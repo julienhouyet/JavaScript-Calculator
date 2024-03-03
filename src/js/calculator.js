@@ -104,6 +104,22 @@ export class Calculator {
 	}
 
 	/**
+	 * Applies the percentage operation to the current value.
+	 * 
+	 * This function calculates the percentage of the current value by dividing it by 100.
+	 * It is triggered when the user presses the '%' button. The result is immediately displayed.
+	 */
+	applyPercentage() {
+		if (this.currentValue === '') return;
+
+		const result = parseFloat(this.currentValue) / 100;
+		this.currentValue = result.toString();
+		this.shouldResetScreen = true;
+
+		this.updateDisplay();
+	}
+
+	/**
 	 * Performs the computation based on the current and previous values and the selected operation.
 	 * 
 	 * This function calculates the result of the operation selected by the user (e.g., addition),

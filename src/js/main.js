@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const decimalButton = document.querySelector('.decimal');
 	const clearButton = document.querySelector('.clear');
 	const equalsButton = document.querySelector('.equals');
+	const percentButton = document.querySelector('.percent');
 	const operationButtons = document.querySelectorAll('[data-operation]');
 
 	// Creates a new instance of the Calculator class
@@ -36,6 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		button.addEventListener('click', () => {
 			calculator.chooseOperation(button.getAttribute('data-operation'));
 		});
+	});
+
+	// Attach event handler to the percent button
+	percentButton.addEventListener('click', () => {
+		calculator.applyPercentage();
 	});
 
 	// Attach event handler to the equal button
