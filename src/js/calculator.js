@@ -11,6 +11,7 @@ export class Calculator {
 	constructor(displayElement) {
 		this.displayElement = displayElement;
 		this.clear();
+		this.shouldResetScreen = false;
 	}
 
 	/** 
@@ -24,6 +25,7 @@ export class Calculator {
 		this.currentValue = '0';
 		this.previousValue = '';
 		this.operation = '';
+		this.shouldResetScreen = false;
 		this.updateDisplay();
 	}
 
@@ -41,6 +43,11 @@ export class Calculator {
 	 *
 	 */
 	appendNumber(number) {
+		if (this.shouldResetScreen) {
+			this.currentValue = '';
+			this.shouldResetScreen = false;
+		}
+
 		let lengthWithoutDecimal = this.currentValue.replace('.', '').length;
 
 		if (lengthWithoutDecimal >= 19) return;
@@ -87,12 +94,13 @@ export class Calculator {
 	 */
 	chooseOperation(operation) {
 		if (this.currentValue === '') return;
-		if (this.previousValue !== '') {
+		if (this.previousValue !== '' && !this.shouldResetScreen) {
 			this.compute();
 		}
 		this.operation = operation;
 		this.previousValue = this.currentValue;
 		this.currentValue = '';
+		this.shouldResetScreen = false;
 	}
 
 	/**
@@ -127,6 +135,7 @@ export class Calculator {
 		this.currentValue = computation.toString();
 		this.operation = '';
 		this.previousValue = '';
+		this.shouldResetScreen = true;
 
 		this.updateDisplay();
 	}
