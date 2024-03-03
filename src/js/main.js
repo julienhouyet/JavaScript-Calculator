@@ -2,6 +2,7 @@ import { Calculator } from './calculator.js';
 
 // Initialize the calculator when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+
 	// Select all buttons and the display element
 	const displayElement = document.querySelector('.display');
 	const numberButtons = document.querySelectorAll('.number');
@@ -9,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const clearButton = document.querySelector('.clear');
 	const equalsButton = document.querySelector('.equals');
 	const operationButtons = document.querySelectorAll('[data-operation]');
+
+	// Creates a new instance of the Calculator class
 	const calculator = new Calculator(displayElement);
 
 	// Attach an event handler to each number button

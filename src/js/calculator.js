@@ -30,12 +30,15 @@ export class Calculator {
 	/** 
 	 * Appends a digit to the current value of the calculator.
 	 * 
+	 * @param {string} number - The digit to be appended to the current value of the calculator.
+	 * 
 	 * This function adds a specified digit to the current value, taking into consideration
 	 * special conditions such as preventing addition of more digits if the current value (excluding
 	 * any decimal point) reaches 19 digits, handling leading zeros, and replacing the initial '0' 
 	 * with the new digit if different from '0'.
 	 * 
 	 * The display is updated after appending the digit to reflect the current state.
+	 *
 	 */
 	appendNumber(number) {
 		let lengthWithoutDecimal = this.currentValue.replace('.', '').length;
