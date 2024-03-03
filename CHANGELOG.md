@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.4.1] - 2024-03-03
+
+### Fixes
+- Correct operation change behavior before entering new number - [commit](https://github.com/julienhouyet/javascript-calculator/commit/947fd46abf7ab510bf775310788bb1e15c52e6c8)
+
 ## [v0.4.0] - 2024-03-03
 
 ### Added
