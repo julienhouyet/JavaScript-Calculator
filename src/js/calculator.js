@@ -8,8 +8,9 @@ export class Calculator {
 	 * resets the calculator to its initial state. This involves setting the current value to '0'
 	 * and ensuring that the display is updated accordingly.
 	 */
-	constructor(displayElement) {
+	constructor(displayElement, operationButtons) {
 		this.displayElement = displayElement;
+		this.operationButtons = operationButtons;
 		this.clear();
 		this.shouldResetScreen = false;
 	}
@@ -43,6 +44,7 @@ export class Calculator {
 	 *
 	 */
 	appendNumber(number) {
+
 		if (this.shouldResetScreen) {
 			this.currentValue = '';
 			this.shouldResetScreen = false;
@@ -93,6 +95,10 @@ export class Calculator {
 	 * @param {string} operation - The operation to perform (e.g., '+').
 	 */
 	chooseOperation(operation) {
+
+		this.removeRingOperation();
+		this.addRingOperation(operation);
+
 		if (this.currentValue === '') return;
 		if (this.previousValue !== '' && !this.shouldResetScreen) {
 			this.compute();
@@ -148,6 +154,7 @@ export class Calculator {
 	 * the result, clears the operation, and updates the display to show the result.
 	 */
 	compute() {
+
 		let computation;
 		const prev = parseFloat(this.previousValue);
 		const current = parseFloat(this.currentValue);
@@ -159,10 +166,10 @@ export class Calculator {
 			case '-':
 				computation = prev - current;
 				break;
-			case '/':
+			case '%':
 				computation = prev / current;
 				break;
-			case '*':
+			case 'x':
 				computation = prev * current;
 				break;
 			default:
@@ -220,6 +227,36 @@ export class Calculator {
 			this.displayElement.className = 'display text-2xl';
 		} else {
 			this.displayElement.className = 'display text-4xl';
+		}
+	}
+
+	/**
+	 * Removes the visual indicator (ring) from all operation buttons.
+	 * 
+	 * This method iterates over all operation buttons and removes specific Tailwind CSS classes
+	 * that create a ring effect around the button. It is used to clear any previous indication
+	 * of a selected operation when a new operation is chosen or the calculation is reset.
+	 */
+	removeRingOperation() {
+		this.operationButtons.forEach(button => button.classList.remove('ring-1', 'ring-neutral-900', 'ring-inset'));
+	}
+
+
+	/**
+	 * Adds a visual indicator (ring) to the currently selected operation button.
+	 * 
+	 * @param {string} operation - The operation symbol (e.g., '+', '-', '*', '/') as used in the calculation logic.
+	 *                             It should match the 'data-operation' attribute of the operation buttons.
+	 * 
+	 * This method finds the operation button that matches the currently selected operation
+	 * and adds Tailwind CSS classes to create a ring effect around the button. This visual
+	 * indicator helps users see which operation is currently active or was last selected.
+	 */
+	addRingOperation(operation) {
+		const selectedOperationButton = Array.from(this.operationButtons).find(button => button.getAttribute('data-operation') === operation);
+		if (selectedOperationButton) {
+			console.log("Bouton trouvé :", selectedOperationButton);
+			selectedOperationButton.classList.add('ring-1', 'ring-neutral-900', 'ring-inset');
 		}
 	}
 }

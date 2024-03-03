@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const equalsButton = document.querySelector('.equals');
 	const percentButton = document.querySelector('.percent');
 	const toggleSignButton = document.querySelector('.toggle-sign');
-	const operationButtons = document.querySelectorAll('[data-operation]');
+	const operationButtons = document.querySelectorAll('.operation');;
 
 	// Creates a new instance of the Calculator class
-	const calculator = new Calculator(displayElement);
+	const calculator = new Calculator(displayElement, operationButtons);
 
 	// Attach an event handler to each number button
 	numberButtons.forEach(button => {
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Attach event handler to the equal button
 	equalsButton.addEventListener('click', button => {
 		calculator.compute();
+		calculator.removeRingOperation();
 		calculator.updateDisplay();
 	});
 });
