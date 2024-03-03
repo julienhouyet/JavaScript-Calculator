@@ -7,7 +7,7 @@
 
 ## Introduction
 
-The aim of this project is to develop a calculator with JavaScript Vanilla. The calculator must be able to perform addition, subtraction, multiplication, division, powers, percentages, logical operators and logarithms.
+The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main goal is to build a tool that serves no practical purpose, such as performing basic arithmetic operations like addition, subtraction, multiplication and division. This project is rooted in a desire to deepen my understanding of JavaScript and its application in the development of user-centered interfaces.
 
 ## :sparkles: Current Features
 
@@ -29,7 +29,7 @@ I'm working to enhance the calculator's capabilities. Here's a sneak peek at wha
 
 ### :electric_plug: Installation
 
-Before you start, make sure you have Node.js installed on your system (preferably the latest version). If you're not sure, run `node -v` in your terminal to check your Node.js version.
+Before you start, make sure you have Node.js installed on your system (preferably the latest version). If you're not sure, run `node -v` in your terminal to check your Node.js version. If you don't already have Node.js installed, you can download it from [the official Node.js website](https://nodejs.org/en). I recommend using the latest LTS (Long Term Support) version.
 
 To install the project, follow these steps:
 
