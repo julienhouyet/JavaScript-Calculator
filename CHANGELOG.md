@@ -1,16 +1,27 @@
 # Changelog
 
+## [v0.4.0] - 2024-03-03
+
+### Added
+- Add applyPercentage functionality to calculate the percentage of the current value. [commit](https://github.com/julienhouyet/javascript-calculator/commit/e8a0c52dae3b082ad8eb968d7fda55e63fde8bfe)
+- Add toggle sign functionality to allow users to change the sign of the current value. [commit](https://github.com/julienhouyet/javascript-calculator/commit/2c2de9788776a4fdaa4b7286294d059c2e5ef382)
+- Add ring effect to active operation buttons for better user feedback. [commit](https://github.com/julienhouyet/javascript-calculator/commit/53cdf7bc2d0766b980f82bb636e815526099f392)
+
+### Fixes
+- Reset values after a calculation to ensure a clean state for the next calculation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/ee0e97e6a849b5b72d2fe9f824f2f01f12a22837)
+- Use scientific notation for displaying large numbers to avoid overflow in the display. [commit](https://github.com/julienhouyet/javascript-calculator/commit/0fad32b4538c27e73d7be1d9ce1f7a7c02b25155)
+
 ## [v0.3.0] - 2024-03-02
 
 ### Added
-- Added support for division operation. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/47d909740f7a4b572c7e9e984fe3ce53c5311149))
-- Added support for multiplication operation. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/b301fd8d4a3302bfa110f25c7f0f40fb989b1fed))
-- Added support for subtraction operation. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/5331576b0419c991d9762fd66e390d2856ccb19e))
-- Added support for addition operation. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/71035eb4192087e32cd2c2d5784166aea2b61c11))
-- Introduced `chooseOperation` and `compute` functions to manage and execute the arithmetic operations, enhancing the calculator's core functionality. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/4b8f6314df20e35c60e4fd2f0b17cc52aa2e12e4))
+- Added support for division operation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/47d909740f7a4b572c7e9e984fe3ce53c5311149)
+- Added support for multiplication operation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/b301fd8d4a3302bfa110f25c7f0f40fb989b1fed)
+- Added support for subtraction operation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/5331576b0419c991d9762fd66e390d2856ccb19e)
+- Added support for addition operation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/71035eb4192087e32cd2c2d5784166aea2b61c11)
+- Introduced `chooseOperation` and `compute` functions to manage and execute arithmetic operations, enhancing the calculator's core functionality. [commit](https://github.com/julienhouyet/javascript-calculator/commit/71035eb4192087e32cd2c2d5784166aea2b61c11)
 
 ### Refactored
-- Reorganized code into a `Calculator` class to improve readability and maintainability. This significant refactor encapsulates calculator operations, state management, and UI updates within a more structured codebase. ([commit](https://github.com/julienhouyet/javascript-calculator/commit/linkToCommit))
+- Reorganized code into a `Calculator` class to improve readability and maintainability. This significant refactor encapsulates calculator operations, state management, and UI updates within a more structured codebase. [commit](https://github.com/julienhouyet/javascript-calculator/commit/4b8f6314df20e35c60e4fd2f0b17cc52aa2e12e4)
 
 ## [v0.2.0] - 2024-03-02
 

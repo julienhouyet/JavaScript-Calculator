@@ -1,26 +1,56 @@
 # Javascript Calculator
 
-![version](https://img.shields.io/badge/version-0.3.0-blue.svg)
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.4.0-blue.svg">
+  <img src="https://img.shields.io/github/languages/code-size/julienhouyet/javascript-calculator.svg">
+</p>
 
 ## Introduction
 
-The aim of this project is to develop a calculator with JavaScript Vanilla. The calculator must be able to perform addition, subtraction, multiplication, division, powers, percentages, logical operators and logarithms.
+The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main goal is to build a tool that serves no practical purpose, such as performing basic arithmetic operations like addition, subtraction, multiplication and division. This project is rooted in a desire to deepen my understanding of JavaScript and its application in the development of user-centered interfaces.
+
+## :sparkles: Current Features
+
+Our calculator offers a comprehensive suite of functionalities designed for both simplicity and efficiency. Users can currently:
+
+- **Perform Basic Arithmetic Operations**: Easily execute fundamental mathematical operations such as addition, subtraction, multiplication, and division.
+- **Sign Inversion**: Quickly invert the sign of any given number, allowing for seamless transitions between positive and negative values.
+- **Percentage Function**: Instantly calculate percentages by using the percentage button, simplifying tasks like calculating discounts, tax rates, or any other percentage-based calculations by dividing the number by 100.
+
+## :soon: Upcoming Features
+
+I'm working to enhance the calculator's capabilities. Here's a sneak peek at what's on our development roadmap:
+
+- **Operation History**: Implement an operation history feature to allow users to view previous calculations, enhancing usability and convenience.
+- **Numeric Keypad Support**: Enable support for numeric keypad input, allowing for faster data entry and an improved user experience.
+
 
 ## :zap: Usage
 
-###  :electric_plug: Installation
+### :electric_plug: Installation
 
-To install the project, clone this repository :
+Before you start, make sure you have Node.js installed on your system (preferably the latest version). If you're not sure, run `node -v` in your terminal to check your Node.js version. If you don't already have Node.js installed, you can download it from [the official Node.js website](https://nodejs.org/en). I recommend using the latest LTS (Long Term Support) version.
+
+To install the project, follow these steps:
 
 ```shell
 $ git clone git@github.com:julienhouyet/javascript-calculator.git
 ```
 
+Navigate into the project directory
+```shell
+$ cd javascript-calculator
+```
+
 Install the dependencies :
 
 ```shell
-$ npm i
+$ npm install
 ```
+
+###  :arrow_forward: Running the Project
+
+Once the installation is complete, you're ready to run the project.
 
 To start the project, run this command :
 
@@ -28,15 +58,9 @@ To start the project, run this command :
 $ npm run start
 ```
 
-The application will be available at the localhost URL displayed in your terminal.
+The application will then be available at http://localhost:5173 (or a different port if 5173 is in use, which will be indicated in your terminal).
 
-###  :package: Commands
-
-Start the project:
-
-```shell
-$ npm start
-```
+###  :package: Other Commands
 
 Build the project for production:
 
@@ -58,13 +82,15 @@ $ npm run preview
 
 ## :hammer_and_wrench: Built With
 
-- JavaScript - The programming language used
+- [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) - The programming language used
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 - [Vite](https://vitejs.dev/) - Frontend build tool
 
 ## :label: Versioning
 
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julienhouyet/javascript-calculator/tags).
+For version management, this project adheres to [Semantic Versioning (SemVer)](http://semver.org/). This approach ensures that version numbers are assigned in a meaningful way, reflecting the nature of changes between releases.
+
+You can find a detailed version history on the [Releases](https://github.com/julienhouyet/javascript-calculator/releases) page of this repository.
 
 ## :memo: Changelog
 

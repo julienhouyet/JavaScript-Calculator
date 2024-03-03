@@ -8,9 +8,11 @@ export class Calculator {
 	 * resets the calculator to its initial state. This involves setting the current value to '0'
 	 * and ensuring that the display is updated accordingly.
 	 */
-	constructor(displayElement) {
+	constructor(displayElement, operationButtons) {
 		this.displayElement = displayElement;
+		this.operationButtons = operationButtons;
 		this.clear();
+		this.shouldResetScreen = false;
 	}
 
 	/** 
@@ -24,11 +26,14 @@ export class Calculator {
 		this.currentValue = '0';
 		this.previousValue = '';
 		this.operation = '';
+		this.shouldResetScreen = false;
 		this.updateDisplay();
 	}
 
 	/** 
 	 * Appends a digit to the current value of the calculator.
+	 * 
+	 * @param {string} number - The digit to be appended to the current value of the calculator.
 	 * 
 	 * This function adds a specified digit to the current value, taking into consideration
 	 * special conditions such as preventing addition of more digits if the current value (excluding
@@ -36,8 +41,15 @@ export class Calculator {
 	 * with the new digit if different from '0'.
 	 * 
 	 * The display is updated after appending the digit to reflect the current state.
+	 *
 	 */
 	appendNumber(number) {
+
+		if (this.shouldResetScreen) {
+			this.currentValue = '';
+			this.shouldResetScreen = false;
+		}
+
 		let lengthWithoutDecimal = this.currentValue.replace('.', '').length;
 
 		if (lengthWithoutDecimal >= 19) return;
@@ -83,13 +95,54 @@ export class Calculator {
 	 * @param {string} operation - The operation to perform (e.g., '+').
 	 */
 	chooseOperation(operation) {
+
+		this.removeRingOperation();
+		this.addRingOperation(operation);
+
 		if (this.currentValue === '') return;
-		if (this.previousValue !== '') {
+		if (this.previousValue !== '' && !this.shouldResetScreen) {
 			this.compute();
 		}
 		this.operation = operation;
 		this.previousValue = this.currentValue;
 		this.currentValue = '';
+		this.shouldResetScreen = false;
+	}
+
+	/**
+	 * Applies the percentage operation to the current value.
+	 * 
+	 * This function calculates the percentage of the current value by dividing it by 100.
+	 * It is triggered when the user presses the '%' button. The result is immediately displayed.
+	 */
+	applyPercentage() {
+		if (this.currentValue === '') return;
+
+		const result = parseFloat(this.currentValue) / 100;
+		this.currentValue = result.toString();
+		this.shouldResetScreen = true;
+
+		this.updateDisplay();
+	}
+
+	/**
+	 * Inverses the sign of the current value displayed on the calculator.
+	 * 
+	 * This function checks if the current value is valid and, if so, multiplies it by -1
+	 * to inverse its sign. The updated value is then converted back to a string to be
+	 * displayed. This allows the user to easily switch between positive and negative
+	 * numbers without having to manually enter a negative sign or perform subtraction.
+	 */
+	applyReverseSign() {
+		if (!this.currentValue) return;
+
+		const currentValueNum = parseFloat(this.currentValue);
+
+		if (isNaN(currentValueNum)) return;
+
+		this.currentValue = (currentValueNum * -1).toString();
+
+		this.updateDisplay();
 	}
 
 	/**
@@ -101,6 +154,7 @@ export class Calculator {
 	 * the result, clears the operation, and updates the display to show the result.
 	 */
 	compute() {
+
 		let computation;
 		const prev = parseFloat(this.previousValue);
 		const current = parseFloat(this.currentValue);
@@ -112,10 +166,10 @@ export class Calculator {
 			case '-':
 				computation = prev - current;
 				break;
-			case '/':
+			case '%':
 				computation = prev / current;
 				break;
-			case '*':
+			case 'x':
 				computation = prev * current;
 				break;
 			default:
@@ -124,18 +178,31 @@ export class Calculator {
 		this.currentValue = computation.toString();
 		this.operation = '';
 		this.previousValue = '';
+		this.shouldResetScreen = true;
 
 		this.updateDisplay();
 	}
 
 	/**
-	 * Update the calculator display.
+	 * Update the calculator display with the current value.
 	 * 
-	 * This function replaces the display element's content with the current value
-	 * and adjusts the display style based on the number of digits to ensure
-	 * readability and a consistent user experience.
+	 * This function displays the current value in the calculator's display element. 
+	 * For readability and to ensure a consistent user experience, it adjusts the display 
+	 * style based on the number of digits. When the current value is too large, too small, 
+	 * or exceeds the display capacity (more than 19 digits), it formats the number using 
+	 * scientific notation to keep the display concise and readable.
+	 * 
 	 */
 	updateDisplay() {
+		let displayValue = this.currentValue;
+
+		const floatValue = parseFloat(displayValue);
+
+		if (!isNaN(floatValue)) {
+			if (displayValue.length > 19 || floatValue >= 1e19 || floatValue <= -1e19) {
+				displayValue = floatValue.toPrecision(15).toString();
+			}
+		}
 		this.displayElement.textContent = this.currentValue;
 
 		this.updateDisplayStyle();
@@ -160,6 +227,36 @@ export class Calculator {
 			this.displayElement.className = 'display text-2xl';
 		} else {
 			this.displayElement.className = 'display text-4xl';
+		}
+	}
+
+	/**
+	 * Removes the visual indicator (ring) from all operation buttons.
+	 * 
+	 * This method iterates over all operation buttons and removes specific Tailwind CSS classes
+	 * that create a ring effect around the button. It is used to clear any previous indication
+	 * of a selected operation when a new operation is chosen or the calculation is reset.
+	 */
+	removeRingOperation() {
+		this.operationButtons.forEach(button => button.classList.remove('ring-1', 'ring-neutral-900', 'ring-inset'));
+	}
+
+
+	/**
+	 * Adds a visual indicator (ring) to the currently selected operation button.
+	 * 
+	 * @param {string} operation - The operation symbol (e.g., '+', '-', '*', '/') as used in the calculation logic.
+	 *                             It should match the 'data-operation' attribute of the operation buttons.
+	 * 
+	 * This method finds the operation button that matches the currently selected operation
+	 * and adds Tailwind CSS classes to create a ring effect around the button. This visual
+	 * indicator helps users see which operation is currently active or was last selected.
+	 */
+	addRingOperation(operation) {
+		const selectedOperationButton = Array.from(this.operationButtons).find(button => button.getAttribute('data-operation') === operation);
+		if (selectedOperationButton) {
+			console.log("Bouton trouvé :", selectedOperationButton);
+			selectedOperationButton.classList.add('ring-1', 'ring-neutral-900', 'ring-inset');
 		}
 	}
 }

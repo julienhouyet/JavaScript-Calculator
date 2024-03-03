@@ -2,14 +2,19 @@ import { Calculator } from './calculator.js';
 
 // Initialize the calculator when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+
 	// Select all buttons and the display element
 	const displayElement = document.querySelector('.display');
 	const numberButtons = document.querySelectorAll('.number');
 	const decimalButton = document.querySelector('.decimal');
 	const clearButton = document.querySelector('.clear');
 	const equalsButton = document.querySelector('.equals');
-	const operationButtons = document.querySelectorAll('[data-operation]');
-	const calculator = new Calculator(displayElement);
+	const percentButton = document.querySelector('.percent');
+	const toggleSignButton = document.querySelector('.toggle-sign');
+	const operationButtons = document.querySelectorAll('.operation');;
+
+	// Creates a new instance of the Calculator class
+	const calculator = new Calculator(displayElement, operationButtons);
 
 	// Attach an event handler to each number button
 	numberButtons.forEach(button => {
@@ -35,9 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
+	// Attach event handler to the percent button
+	percentButton.addEventListener('click', () => {
+		calculator.applyPercentage();
+	});
+
+	// Attach event handler to the toggle sign button
+	toggleSignButton.addEventListener('click', () => {
+		calculator.applyReverseSign();
+	});
+
 	// Attach event handler to the equal button
 	equalsButton.addEventListener('click', button => {
 		calculator.compute();
+		calculator.removeRingOperation();
 		calculator.updateDisplay();
 	});
 });
