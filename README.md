@@ -1,7 +1,7 @@
 # Javascript Calculator
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.4.0-blue.svg">
+  <img src="https://img.shields.io/badge/version-0.4.1-blue.svg">
   <img src="https://img.shields.io/github/languages/code-size/julienhouyet/javascript-calculator.svg">
 </p>
 

@@ -99,7 +99,11 @@ export class Calculator {
 		this.removeRingOperation();
 		this.addRingOperation(operation);
 
-		if (this.currentValue === '') return;
+		if (this.currentValue === '') {
+			this.operation = operation;
+			return;
+		}
+
 		if (this.previousValue !== '' && !this.shouldResetScreen) {
 			this.compute();
 		}
