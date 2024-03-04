@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const equalsButton = document.querySelector('.equals');
 	const percentButton = document.querySelector('.percent');
 	const toggleSignButton = document.querySelector('.toggle-sign');
-	const operationButtons = document.querySelectorAll('.operation');;
+	const operationButtons = document.querySelectorAll('.operation');
 
 	/** Creates a new instance of the Calculator class */
 	const calculator = new Calculator(displayElement, operationButtons);

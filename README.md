@@ -1,13 +1,13 @@
 # Javascript Calculator
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.4.1-blue.svg">
+  <img src="https://img.shields.io/badge/version-0.5.0-blue.svg">
   <img src="https://img.shields.io/github/languages/code-size/julienhouyet/javascript-calculator.svg">
 </p>
 
 ## Introduction
 
-The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main goal is to build a tool that serves practical purpose, such as performing basic arithmetic operations like addition, subtraction, multiplication and division. This project is rooted in a desire to deepen my understanding of JavaScript and its application in the development of user-centered interfaces.
+The aim of this project is to improve my skills in Vanilla JavaScript by creating a functional and intuitive calculator. The main objective is to make a calculator that performs basic arithmetic operations such as addition, subtraction, multiplication and division.
 
 ## :sparkles: Current Features
 
@@ -16,13 +16,13 @@ The calculator offers a comprehensive suite of functionalities designed for both
 - **Perform Basic Arithmetic Operations**: Easily execute fundamental mathematical operations such as addition, subtraction, multiplication, and division.
 - **Sign Inversion**: Quickly invert the sign of any given number, allowing for seamless transitions between positive and negative values.
 - **Percentage Function**: Instantly calculate percentages by using the percentage button, simplifying tasks like calculating discounts, tax rates, or any other percentage-based calculations by dividing the number by 100.
+- **Numeric Keypad Support**: Enable support for numeric keypad input, allowing for faster data entry and an improved user experience.
 
 ## :soon: Upcoming Features
 
 I'm working to enhance the calculator's capabilities. Here's a sneak peek at what's on our development roadmap:
 
 - **Operation History**: Implement an operation history feature to allow users to view previous calculations, enhancing usability and convenience.
-- **Numeric Keypad Support**: Enable support for numeric keypad input, allowing for faster data entry and an improved user experience.
 
 
 ## :zap: Usage
