@@ -1,6 +1,6 @@
 import { Calculator } from './calculator.js';
 
-// Initialize the calculator when the DOM is fully loaded
+/** Initialize the calculator when the DOM is fully loaded */
 document.addEventListener('DOMContentLoaded', () => {
 
 	// Select all buttons and the display element
@@ -11,49 +11,87 @@ document.addEventListener('DOMContentLoaded', () => {
 	const equalsButton = document.querySelector('.equals');
 	const percentButton = document.querySelector('.percent');
 	const toggleSignButton = document.querySelector('.toggle-sign');
-	const operationButtons = document.querySelectorAll('.operation');;
+	const operationButtons = document.querySelectorAll('.operation');
 
-	// Creates a new instance of the Calculator class
+	/** Creates a new instance of the Calculator class */
 	const calculator = new Calculator(displayElement, operationButtons);
 
-	// Attach an event handler to each number button
+	/** Attaches an event handler to each number button */
 	numberButtons.forEach(button => {
 		button.addEventListener('click', () => {
 			calculator.appendNumber(button.textContent);
 		});
 	});
 
-	// Attach event handler to the decimal button
+	/** Attaches event handler to the decimal button */
 	decimalButton.addEventListener('click', () => {
 		calculator.appendDecimal();
 	});
 
-	// Attach event handler to the AC button
+	/** Attaches event handler to the AC button */
 	clearButton.addEventListener('click', button => {
 		calculator.clear();
 	});
 
-	// Attach an event handler to each operation button
+	/** Attaches an event handler to each operation button */
 	operationButtons.forEach(button => {
 		button.addEventListener('click', () => {
 			calculator.chooseOperation(button.getAttribute('data-operation'));
 		});
 	});
 
-	// Attach event handler to the percent button
+	/** Attaches event handler to the percent button */
 	percentButton.addEventListener('click', () => {
 		calculator.applyPercentage();
 	});
 
-	// Attach event handler to the toggle sign button
+	/** Attaches event handler to the toggle sign button */
 	toggleSignButton.addEventListener('click', () => {
 		calculator.applyReverseSign();
 	});
 
-	// Attach event handler to the equal button
+	/** Attaches event handler to the equal button */
 	equalsButton.addEventListener('click', button => {
 		calculator.compute();
 		calculator.removeRingOperation();
 		calculator.updateDisplay();
+	});
+
+	/** Attaches an event handler to the keyboard to enable calculator operations via keyboard input. */
+	document.addEventListener('keydown', (e) => {
+		let updateDisplayRequired = true;
+
+		if (e.key >= 0 && e.key <= 9) {
+			calculator.appendNumber(e.key);
+		}
+		else if (e.key === '.') {
+			calculator.appendDecimal();
+		}
+		else if (['+', '-', '*'].includes(e.key)) {
+			calculator.chooseOperation(e.key === '*' ? 'x' : e.key);
+			updateDisplayRequired = false;
+		}
+		else if (e.key === '/') {
+			calculator.chooseOperation('÷');
+			updateDisplayRequired = false;
+		}
+		else if (e.key === 'Enter' || e.key === '=') {
+			e.preventDefault();
+			calculator.compute();
+			calculator.removeRingOperation();
+		}
+		else if (e.key === 'Backspace') {
+			calculator.clear();
+		}
+		else if (e.key === '%') {
+			calculator.applyPercentage();
+		}
+		else if (e.key === 'Escape') {
+			calculator.clear();
+		}
+
+		if (updateDisplayRequired) {
+			calculator.updateDisplay();
+		}
 	});
 });

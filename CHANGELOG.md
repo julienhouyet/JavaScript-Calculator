@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.5.0] - 2024-03-04
+
+### Added
+- Support for numeric keyboard input, enabling users to perform calculations using their keyboard. [commit](https://github.com/julienhouyet/javascript-calculator/commit/1900d7ef32a30339c323a247330e8b746c33be63)
+
+### Fixes
+- Correct ÷ symbol operation. [commit](https://github.com/julienhouyet/javascript-calculator/commit/68d09b30a23e6cab902ef64ae3ca4c8471f0e640)
+
 ## [v0.4.1] - 2024-03-03
 
 ### Fixes
