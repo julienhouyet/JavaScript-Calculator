@@ -12,7 +12,6 @@ export class Calculator {
 		this.displayElement = displayElement;
 		this.operationButtons = operationButtons;
 		this.clear();
-		this.shouldResetScreen = false;
 	}
 
 	/** 
